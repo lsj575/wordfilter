@@ -139,3 +139,10 @@ go run main.go 9712
       }
       ```
 
+### 安全
+
+#### sign
+
+- base64加密字符串
+- 字符串：`sensitive||(当前时间戳)||token`
+
