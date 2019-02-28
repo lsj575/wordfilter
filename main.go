@@ -32,6 +32,6 @@ func main() {
 		if err != nil {
 			log.Fatal("args is wrong", err)
 		}
-		app.Run(iris.Addr(fmt.Sprintf(":%d", port)))
+		app.Listen(fmt.Sprintf(":%d", port))
 	}
 }

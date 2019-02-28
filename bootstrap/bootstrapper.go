@@ -4,7 +4,6 @@ import (
 	"github.com/kataras/iris"
 	"github.com/kataras/iris/middleware/logger"
 	"github.com/kataras/iris/middleware/recover"
-	"github.com/lsj575/lottery/config"
 	"time"
 )
 
@@ -30,37 +29,6 @@ func New(appName, appOwner string, cfgs ...Configurator) *Bootstrapper {
 	}
 
 	return b
-}
-
-func (b *Bootstrapper) SetupViews(viewDir string) {
-	htmlEngine := iris.HTML(viewDir, ".html").Layout("shared/layout.html")
-	htmlEngine.Reload(true)
-	htmlEngine.AddFunc("FromUnixTimeShort", func(t int) string {
-		dt := time.Unix(int64(t), int64(0))
-		return dt.Format(config.SysTimeformShort)
-	})
-	htmlEngine.AddFunc("FromUnixTime", func(t int) string {
-		dt := time.Unix(int64(t), int64(0))
-		return dt.Format(config.SysTimeform)
-	})
-	b.RegisterView(htmlEngine)
-}
-
-func (b *Bootstrapper) SetupErrorHandlers() {
-	b.OnAnyErrorCode(func(context iris.Context) {
-		err := iris.Map{
-			"app": b.AppName,
-			"status": context.GetStatusCode(),
-			"message": context.Values().GetString("message"),
-		}
-		if jsonOutput := context.URLParamExists("json"); jsonOutput {
-			context.JSON(err)
-			return
-		}
-		context.ViewData("Err", err)
-		context.ViewData("Title", "Error")
-		context.View("shared/error.html")
-	})
 }
 
 func (b *Bootstrapper) Configure(cfgs ...func(b *Bootstrapper)) {
