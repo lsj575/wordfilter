@@ -9,7 +9,7 @@ Go Web框架：iris [官网](https://studyiris.com/)
 ## install
 
 ```shell
-go get github.com/lsj575/wordfilter
+git clone git@github.com:lsj575/wordfilter.git
 
 cd $GOPATH/src/github.com/lsj575/wordfilter
 
