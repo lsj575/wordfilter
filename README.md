@@ -43,7 +43,7 @@ go run main.go 9712
 
   - Params:
 
-    - content:苍井空（あおい そら），日本AV演员兼电视、电影演员
+    - content:苍井空，日本AV演员
 
   - Response:
 
@@ -113,7 +113,7 @@ go run main.go 9712
 
 - 示例
 
-  - Request：`http://localhost:9712/sensitiveword`
+  - Request：`http://localhost:9712/whiteword`
 
   - Params:
 
